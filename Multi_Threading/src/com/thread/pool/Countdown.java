@@ -39,13 +39,13 @@ public class Countdown {
 
 	public static void main(String[] args) {
 		long start = System.currentTimeMillis();
-		CountDownLatch latch = new CountDownLatch(3);
+		CountDownLatch latch = new CountDownLatch(8);
 		ExecutorService executor = Executors.newFixedThreadPool(3);
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 8; i++) {
 			executor.submit(new Pro(latch));
 		}
 		try {
-			latch.await(10, TimeUnit.SECONDS);
+			latch.await();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
