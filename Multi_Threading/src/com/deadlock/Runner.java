@@ -12,18 +12,29 @@ public class Runner {
 	private Lock lock1 = new ReentrantLock();
 	private Lock lock2 = new ReentrantLock();
 
+	private void acquireLocks(Lock firstlock, Lock secondlock) {
+		
+		while(true){
+			
+		}
+
+	}
+
+	private void releaseLocks(Lock lock12, Lock lock22) {
+		// TODO Auto-generated method stub
+
+	}
+
 	public void FirstThread() {
 
 		for (int i = 0; i < 10000; i++) {
-			lock2.lock();
-			lock1.lock();
+			acquireLocks(lock1, lock2);
 
 			try {
 				Account.balanceTransfer(acc1, acc2, new Random().nextInt(100));
 
 			} finally {
-				lock1.unlock();
-				lock2.unlock();
+				releaseLocks(lock1, lock2);
 			}
 		}
 	}
@@ -31,14 +42,13 @@ public class Runner {
 	public void secondThread() {
 
 		for (int i = 0; i < 10000; i++) {
-			lock1.lock();
-			lock2.lock();
+			acquireLocks(lock2, lock1);
 			try {
 				Account.balanceTransfer(acc2, acc1, new Random().nextInt(100));
 
 			} finally {
-				lock1.unlock();
-				lock2.unlock();
+				releaseLocks(lock1, lock2);
+
 			}
 		}
 

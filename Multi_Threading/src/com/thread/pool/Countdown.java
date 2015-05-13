@@ -39,7 +39,7 @@ public class Countdown {
 
 	public static void main(String[] args) {
 		long start = System.currentTimeMillis();
-		CountDownLatch latch = new CountDownLatch(8);
+		CountDownLatch latch = new CountDownLatch(10);
 		ExecutorService executor = Executors.newFixedThreadPool(3);
 		for (int i = 0; i < 8; i++) {
 			executor.submit(new Pro(latch));
